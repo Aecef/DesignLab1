@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(-1, -1, 801, 481))
-        self.widget.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(153, 170, 181, 255), stop:0.886364 rgba(35, 39, 42, 255), stop:1 rgba(35, 39, 42, 255));")
+        self.widget.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(153, 170, 181, 255), stop:0.431818 rgba(153, 170, 181, 255), stop:0.727273 rgba(100, 110, 117, 255), stop:0.965909 rgba(44, 47, 51, 255), stop:1 rgba(35, 39, 42, 255));")
         self.widget.setObjectName("widget")
         self.widget_2 = QtWidgets.QWidget(self.widget)
         self.widget_2.setGeometry(QtCore.QRect(-1, -1, 801, 31))
@@ -58,13 +58,3 @@ class Ui_MainWindow(object):
         self.exit_button.setText(_translate("MainWindow", "✖"))
         self.minimize_button.setText(_translate("MainWindow", "🗕"))
         self.label.setText(_translate("MainWindow", "Thermometer Control Panel"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())

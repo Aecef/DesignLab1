@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(153, 170, 181, 255), stop:0.886364 rgba(35, 39, 42, 255), stop:1 rgba(35, 39, 42, 255));</string>
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(153, 170, 181, 255), stop:0.431818 rgba(153, 170, 181, 255), stop:0.727273 rgba(100, 110, 117, 255), stop:0.965909 rgba(44, 47, 51, 255), stop:1 rgba(35, 39, 42, 255));</string>
     </property>
     <widget class="QWidget" name="widget_2" native="true">
      <property name="geometry">
