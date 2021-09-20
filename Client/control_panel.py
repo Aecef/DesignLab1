@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 479)
+        MainWindow.resize(810, 479)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
@@ -28,18 +28,34 @@ class Ui_MainWindow(object):
         self.exit_button = QtWidgets.QPushButton(self.widget_2)
         self.exit_button.setEnabled(True)
         self.exit_button.setGeometry(QtCore.QRect(770, 0, 31, 31))
-        self.exit_button.setStyleSheet("font: 14pt \"Segoe UI Symbol\";\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(30, 34, 36);\n"
-"border-style: outset;")
+        self.exit_button.setStyleSheet("QPushButton#exit_button{\n"
+"    font: 14pt \"Segoe UI Symbol\";\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(30, 34, 36);\n"
+"    border-style: outset;\n"
+"}\n"
+"\n"
+"QPushButton:hover#exit_button{\n"
+"    font: 14pt \"Segoe UI Symbol\";\n"
+"    color: rgb(30,34,36);\n"
+"    background-color: rgb(246, 246, 246);\n"
+"}")
         self.exit_button.setObjectName("exit_button")
         self.minimize_button = QtWidgets.QPushButton(self.widget_2)
         self.minimize_button.setGeometry(QtCore.QRect(740, 0, 31, 31))
-        self.minimize_button.setStyleSheet("font: 14pt \"Segoe UI Symbol\";\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(30, 34, 36);\n"
-"border-style: outset;\n"
-"padding-bottom: 5px;")
+        self.minimize_button.setStyleSheet("QPushButton#minimize_button{\n"
+"    font: 14pt \"Segoe UI Symbol\";\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(30, 34, 36);\n"
+"    border-style: outset;\n"
+"    padding-bottom: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover#minimize_button{\n"
+"    font: 14pt \"Segoe UI Symbol\";\n"
+"    color: rgb(30,34,36);\n"
+"    background-color: rgb(246, 246, 246);\n"
+"}")
         self.minimize_button.setObjectName("minimize_button")
         self.label = QtWidgets.QLabel(self.widget_2)
         self.label.setGeometry(QtCore.QRect(6, 3, 261, 31))

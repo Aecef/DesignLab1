@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>810</width>
     <height>479</height>
    </rect>
   </property>
@@ -51,10 +51,18 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;Segoe UI Symbol&quot;;
-color: rgb(255, 255, 255);
-background-color: rgb(30, 34, 36);
-border-style: outset;</string>
+       <string notr="true">QPushButton#exit_button{
+	font: 14pt &quot;Segoe UI Symbol&quot;;
+	color: rgb(255, 255, 255);
+	background-color: rgb(30, 34, 36);
+	border-style: outset;
+}
+
+QPushButton:hover#exit_button{
+	font: 14pt &quot;Segoe UI Symbol&quot;;
+	color: rgb(30,34,36);
+	background-color: rgb(246, 246, 246);
+}</string>
       </property>
       <property name="text">
        <string>✖</string>
@@ -70,11 +78,19 @@ border-style: outset;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;Segoe UI Symbol&quot;;
-color: rgb(255, 255, 255);
-background-color: rgb(30, 34, 36);
-border-style: outset;
-padding-bottom: 5px;</string>
+       <string notr="true">QPushButton#minimize_button{
+	font: 14pt &quot;Segoe UI Symbol&quot;;
+	color: rgb(255, 255, 255);
+	background-color: rgb(30, 34, 36);
+	border-style: outset;
+	padding-bottom: 5px;
+}
+
+QPushButton:hover#minimize_button{
+	font: 14pt &quot;Segoe UI Symbol&quot;;
+	color: rgb(30,34,36);
+	background-color: rgb(246, 246, 246);
+}</string>
       </property>
       <property name="text">
        <string>🗕</string>
