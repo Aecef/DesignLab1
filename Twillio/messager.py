@@ -3,10 +3,11 @@ import keys
 
 client = Client(keys.account_sid, keys.auth_token)
 
-message = client.messages.create(
-    body = "Alec does a test sms to make sure it works ;)",
-    from_=keys.from_phone,
-    to=keys.target_phone
-)
+def sendAlert(alert_message, uphone):
+    message = client.messages.create(
+        body = alert_message,
+        from_= keys.from_phone,
+        to = ("+" + uphone)
+    )
 
-print(message.body)
+sendAlert("function worked", '18156669066')
