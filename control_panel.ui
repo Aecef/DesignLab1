@@ -14,7 +14,7 @@
    <string>Thermometer Control Panel</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QWidget" name="background" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -26,7 +26,7 @@
     <property name="styleSheet">
      <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(153, 170, 181, 255), stop:0.431818 rgba(153, 170, 181, 255), stop:0.727273 rgba(100, 110, 117, 255), stop:0.965909 rgba(44, 47, 51, 255), stop:1 rgba(35, 39, 42, 255));</string>
     </property>
-    <widget class="QWidget" name="widget_2" native="true">
+    <widget class="QWidget" name="window_frame" native="true">
      <property name="geometry">
       <rect>
        <x>-1</x>
@@ -34,6 +34,9 @@
        <width>801</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(30, 34, 36);</string>
@@ -50,6 +53,9 @@
         <height>31</height>
        </rect>
       </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#exit_button{
 	font: 14pt &quot;Segoe UI Symbol&quot;;
@@ -62,6 +68,20 @@ QPushButton:hover#exit_button{
 	font: 14pt &quot;Segoe UI Symbol&quot;;
 	color: rgb(30,34,36);
 	background-color: rgb(246, 246, 246);
+	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(30, 34, 36);
+	margin-top: 1px
+}
+
+QPushButton:pressed#exit_button{
+	font: 14pt &quot;Segoe UI Symbol&quot;;
+	color: rgb(30,34,36);
+	background-color: rgb(153, 170, 181);
+	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(30, 34, 36);
+	margin-top: 1px
 }</string>
       </property>
       <property name="text">
@@ -90,17 +110,31 @@ QPushButton:hover#minimize_button{
 	font: 14pt &quot;Segoe UI Symbol&quot;;
 	color: rgb(30,34,36);
 	background-color: rgb(246, 246, 246);
+	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(30, 34, 36);
+	margin-top: 1px
+}
+
+QPushButton:pressed#minimize_button{
+	font: 14pt &quot;Segoe UI Symbol&quot;;
+	color: rgb(30,34,36);
+	background-color: rgb(153, 170, 181);
+	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(30, 34, 36);
+	margin-top: 1px
 }</string>
       </property>
       <property name="text">
        <string>🗕</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="program_label">
       <property name="geometry">
        <rect>
-        <x>6</x>
-        <y>3</y>
+        <x>60</x>
+        <y>0</y>
         <width>261</width>
         <height>31</height>
        </rect>
@@ -112,6 +146,51 @@ background-color: rgb(30, 34, 36);</string>
       </property>
       <property name="text">
        <string>Thermometer Control Panel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="settings_button">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#settings_button{
+	font: 14pt &quot;Segoe UI Symbol&quot;;
+	color: rgb(255, 255, 255);
+	background-color: rgb(30, 34, 36);
+	border-style: outset;
+}
+
+QPushButton:hover#settings_button{
+	font: bold 14pt &quot;Segoe UI Symbol&quot;;
+	color: rgb(30,34,36);
+	background-color: rgb(246, 246, 246);
+	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(30, 34, 36);
+	margin-top: 1px;
+	margin-left:1px;
+	padding-right: 1px;
+}
+
+QPushButton:pressed#settings_button{
+	font: bold 14pt &quot;Segoe UI Symbol&quot;;
+	color: rgb(30,34,36);
+	background-color: rgb(153, 170, 181);
+	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(30, 34, 36);
+	margin-top: 1px;
+	margin-left:1px;
+	padding-right: 1px;
+}</string>
+      </property>
+      <property name="text">
+       <string>⚙</string>
       </property>
      </widget>
     </widget>

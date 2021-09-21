@@ -17,52 +17,116 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 480)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(0, 0, 801, 481))
-        self.widget.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(153, 170, 181, 255), stop:0.431818 rgba(153, 170, 181, 255), stop:0.727273 rgba(100, 110, 117, 255), stop:0.965909 rgba(44, 47, 51, 255), stop:1 rgba(35, 39, 42, 255));")
-        self.widget.setObjectName("widget")
-        self.widget_2 = QtWidgets.QWidget(self.widget)
-        self.widget_2.setGeometry(QtCore.QRect(-1, -1, 801, 31))
-        self.widget_2.setStyleSheet("background-color: rgb(30, 34, 36);")
-        self.widget_2.setObjectName("widget_2")
-        self.exit_button = QtWidgets.QPushButton(self.widget_2)
+        self.background = QtWidgets.QWidget(self.centralwidget)
+        self.background.setGeometry(QtCore.QRect(0, 0, 801, 481))
+        self.background.setStyleSheet(
+            "background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(153, 170, 181, 255), stop:0.431818 rgba(153, 170, 181, 255), stop:0.727273 rgba(100, 110, 117, 255), stop:0.965909 rgba(44, 47, 51, 255), stop:1 rgba(35, 39, 42, 255));")
+        self.background.setObjectName("background")
+        self.window_frame = QtWidgets.QWidget(self.background)
+        self.window_frame.setGeometry(QtCore.QRect(-1, -1, 801, 31))
+        self.window_frame.setMouseTracking(True)
+        self.window_frame.setStyleSheet("background-color: rgb(30, 34, 36);")
+        self.window_frame.setObjectName("window_frame")
+        self.exit_button = QtWidgets.QPushButton(self.window_frame)
         self.exit_button.setEnabled(True)
         self.exit_button.setGeometry(QtCore.QRect(770, 0, 31, 31))
+        self.exit_button.setMouseTracking(False)
         self.exit_button.setStyleSheet("QPushButton#exit_button{\n"
-"    font: 14pt \"Segoe UI Symbol\";\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: rgb(30, 34, 36);\n"
-"    border-style: outset;\n"
-"}\n"
-"\n"
-"QPushButton:hover#exit_button{\n"
-"    font: 14pt \"Segoe UI Symbol\";\n"
-"    color: rgb(30,34,36);\n"
-"    background-color: rgb(246, 246, 246);\n"
-"}")
+                                       "    font: 14pt \"Segoe UI Symbol\";\n"
+                                       "    color: rgb(255, 255, 255);\n"
+                                       "    background-color: rgb(30, 34, 36);\n"
+                                       "    border-style: outset;\n"
+                                       "}\n"
+                                       "\n"
+                                       "QPushButton:hover#exit_button{\n"
+                                       "    font: 14pt \"Segoe UI Symbol\";\n"
+                                       "    color: rgb(30,34,36);\n"
+                                       "    background-color: rgb(246, 246, 246);\n"
+                                       "    border-style: solid;\n"
+                                       "    border-width: 3px;\n"
+                                       "    border-color: rgb(30, 34, 36);\n"
+                                       "    margin-top: 1px\n"
+                                       "}\n"
+                                       "\n"
+                                       "QPushButton:pressed#exit_button{\n"
+                                       "    font: 14pt \"Segoe UI Symbol\";\n"
+                                       "    color: rgb(30,34,36);\n"
+                                       "    background-color: rgb(153, 170, 181);\n"
+                                       "    border-style: solid;\n"
+                                       "    border-width: 3px;\n"
+                                       "    border-color: rgb(30, 34, 36);\n"
+                                       "    margin-top: 1px\n"
+                                       "}")
         self.exit_button.setObjectName("exit_button")
-        self.minimize_button = QtWidgets.QPushButton(self.widget_2)
+        self.minimize_button = QtWidgets.QPushButton(self.window_frame)
         self.minimize_button.setGeometry(QtCore.QRect(740, 0, 31, 31))
         self.minimize_button.setStyleSheet("QPushButton#minimize_button{\n"
-"    font: 14pt \"Segoe UI Symbol\";\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: rgb(30, 34, 36);\n"
-"    border-style: outset;\n"
-"    padding-bottom: 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover#minimize_button{\n"
-"    font: 14pt \"Segoe UI Symbol\";\n"
-"    color: rgb(30,34,36);\n"
-"    background-color: rgb(246, 246, 246);\n"
-"}")
+                                           "    font: 14pt \"Segoe UI Symbol\";\n"
+                                           "    color: rgb(255, 255, 255);\n"
+                                           "    background-color: rgb(30, 34, 36);\n"
+                                           "    border-style: outset;\n"
+                                           "    padding-bottom: 5px;\n"
+                                           "}\n"
+                                           "\n"
+                                           "QPushButton:hover#minimize_button{\n"
+                                           "    font: 14pt \"Segoe UI Symbol\";\n"
+                                           "    color: rgb(30,34,36);\n"
+                                           "    background-color: rgb(246, 246, 246);\n"
+                                           "    border-style: solid;\n"
+                                           "    border-width: 3px;\n"
+                                           "    border-color: rgb(30, 34, 36);\n"
+                                           "    margin-top: 1px\n"
+                                           "}\n"
+                                           "\n"
+                                           "QPushButton:pressed#minimize_button{\n"
+                                           "    font: 14pt \"Segoe UI Symbol\";\n"
+                                           "    color: rgb(30,34,36);\n"
+                                           "    background-color: rgb(153, 170, 181);\n"
+                                           "    border-style: solid;\n"
+                                           "    border-width: 3px;\n"
+                                           "    border-color: rgb(30, 34, 36);\n"
+                                           "    margin-top: 1px\n"
+                                           "}")
         self.minimize_button.setObjectName("minimize_button")
-        self.label = QtWidgets.QLabel(self.widget_2)
-        self.label.setGeometry(QtCore.QRect(6, 3, 261, 31))
-        self.label.setStyleSheet("font: 87 14pt \"Segoe UI Black\";\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(30, 34, 36);")
-        self.label.setObjectName("label")
+        self.program_label = QtWidgets.QLabel(self.window_frame)
+        self.program_label.setGeometry(QtCore.QRect(60, 0, 261, 31))
+        self.program_label.setStyleSheet("font: 87 14pt \"Segoe UI Black\";\n"
+                                         "color: rgb(255, 255, 255);\n"
+                                         "background-color: rgb(30, 34, 36);")
+        self.program_label.setObjectName("program_label")
+        self.settings_button = QtWidgets.QPushButton(self.window_frame)
+        self.settings_button.setGeometry(QtCore.QRect(0, 0, 31, 31))
+        self.settings_button.setStyleSheet("QPushButton#settings_button{\n"
+                                           "    font: 14pt \"Segoe UI Symbol\";\n"
+                                           "    color: rgb(255, 255, 255);\n"
+                                           "    background-color: rgb(30, 34, 36);\n"
+                                           "    border-style: outset;\n"
+                                           "}\n"
+                                           "\n"
+                                           "QPushButton:hover#settings_button{\n"
+                                           "    font: bold 14pt \"Segoe UI Symbol\";\n"
+                                           "    color: rgb(30,34,36);\n"
+                                           "    background-color: rgb(246, 246, 246);\n"
+                                           "    border-style: solid;\n"
+                                           "    border-width: 3px;\n"
+                                           "    border-color: rgb(30, 34, 36);\n"
+                                           "    margin-top: 1px;\n"
+                                           "    margin-left:1px;\n"
+                                           "    padding-right: 1px;\n"
+                                           "}\n"
+                                           "\n"
+                                           "QPushButton:pressed#settings_button{\n"
+                                           "    font: bold 14pt \"Segoe UI Symbol\";\n"
+                                           "    color: rgb(30,34,36);\n"
+                                           "    background-color: rgb(153, 170, 181);\n"
+                                           "    border-style: solid;\n"
+                                           "    border-width: 3px;\n"
+                                           "    border-color: rgb(30, 34, 36);\n"
+                                           "    margin-top: 1px;\n"
+                                           "    margin-left:1px;\n"
+                                           "    padding-right: 1px;\n"
+                                           "}")
+        self.settings_button.setObjectName("settings_button")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -73,4 +137,5 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Thermometer Control Panel"))
         self.exit_button.setText(_translate("MainWindow", "✖"))
         self.minimize_button.setText(_translate("MainWindow", "🗕"))
-        self.label.setText(_translate("MainWindow", "Thermometer Control Panel"))
+        self.program_label.setText(_translate("MainWindow", "Thermometer Control Panel"))
+        self.settings_button.setText(_translate("MainWindow", "⚙"))
