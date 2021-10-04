@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Thermometer Control Panel</string>
   </property>
-  <widget class="centralwidget" name="centralwidget">
+  <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="background" native="true">
     <property name="geometry">
      <rect>
@@ -194,14 +194,6 @@ QPushButton:pressed#settings_button{
    </widget>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>centralwidget</class>
-   <extends>QWidget</extends>
-   <header>centralwidget.py</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
