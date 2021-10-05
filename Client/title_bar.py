@@ -9,7 +9,6 @@ class TitleBar(QWidget):
     def __init__(self, parent):
         super(TitleBar, self).__init__()
         self.parent = parent
-        print(self.parent.width())
         self.layout = QHBoxLayout()
         self.layout.setContentsMargins(0,0,0,0)
         self.layout.setSpacing(0)
