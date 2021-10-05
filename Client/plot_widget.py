@@ -30,9 +30,6 @@ class PlotWidget(QFrame):
         self._plot_ref = None
         self.update_plot()
 
-        string = '2.2'
-
-
         self.timer = QtCore.QTimer()
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.update_plot)
