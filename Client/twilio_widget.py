@@ -5,19 +5,16 @@ from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import Qt
 
-
 class TwilioWidget(QFrame):
     def __init__(self, parent):
         super(TwilioWidget, self).__init__()
         self.parent = parent
-        self.setAttribute(Qt.WA_StyledBackground, True)
         self.setFixedSize(250,400)
-
-        self.layout = QGridLayout()
-
         self.setStyleSheet(
             "   background-color: rgb(46, 60, 80);"
         )
+
+        self.layout = QGridLayout()
 
         self.phone_number_label = QLabel("Phone Number:")
         self.phone_number_label.setAlignment(Qt.AlignCenter)
@@ -34,6 +31,7 @@ class TwilioWidget(QFrame):
             "background-color: rgb(246, 246, 246);"
             "color: rgb(30, 34, 36);"
             "border: 2px solid rgb(30, 34, 36);"
+            "border-radius: 2px;"
             "font: 12pt \"Segoe UI Symbol\""
         )
 
@@ -52,6 +50,7 @@ class TwilioWidget(QFrame):
             "background-color: rgb(246, 246, 246);"
             "color: rgb(30, 34, 36);"
             "border: 2px solid rgb(30, 34, 36);"
+            "border-radius: 2px;"
             "font: 12pt \"Segoe UI Symbol\""
         )
 
@@ -70,11 +69,36 @@ class TwilioWidget(QFrame):
             "background-color: rgb(246, 246, 246);"
             "color: rgb(30, 34, 36);"
             "border: 2px solid rgb(30, 34, 36);"
+            "border-radius: 2px;"
             "font: 12pt \"Segoe UI Symbol\""
         )
 
         self.apply_btn = QPushButton('Apply')
         self.apply_btn.setFixedSize(175, 40)
+        self.apply_btn.clicked.connect(self.apply_btn_press)
+        self.apply_btn.setStyleSheet(
+            "QPushButton{"
+            "   font: 14pt \"Segoe UI Symbol\";"
+            "   color: rgb(255, 255, 255);"
+            "   background-color: rgb(30, 34, 36);"
+            "   border-radius: 5px;"
+            "   border: 2px solid rgb(30, 34, 36);"  
+            "}"
+            "QPushButton:hover{"
+            "   font: bold 14pt \"Segoe UI Symbol\";"
+            "   color: rgb(30,34,36);"
+            "   background-color: rgb(246, 246, 246);"
+            "   border-radius: 5px;"
+            "   border: 2px solid rgb(30, 34, 36);"  
+            "}"
+            "QPushButton:pressed{"
+            "   font: bold 14pt \"Segoe UI Symbol\";"
+            "   color: rgb(30,34,36);"
+            "   background-color: rgb(153, 170, 181);"
+            "   border-radius: 5px;"
+            "   border: 2px solid rgb(30, 34, 36);"  
+            "}"
+        )
 
         self.layout.addWidget(self.phone_number_label, 1, 0, alignment=Qt.AlignCenter)
         self.layout.addWidget(self.phone_number, 2, 0, alignment=Qt.AlignCenter)
@@ -85,4 +109,5 @@ class TwilioWidget(QFrame):
         self.layout.addWidget(self.apply_btn, 7, 0, alignment=Qt.AlignCenter)
         self.setLayout(self.layout)
 
-        self.pressing = False
+    def apply_btn_press(self):
+        print("Apply")
