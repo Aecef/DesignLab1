@@ -1,5 +1,14 @@
 import socket
 
+temp = 0.0
+
+def get_temp():
+    return temp
+
+def set_temp(new_temp):
+    temp = new_temp
+
+
 HEADERSIZE = 10
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(("172.20.10.12", 1242))
@@ -18,5 +27,7 @@ while True:
     if len(full_msg) - HEADERSIZE == msglen:
         #print("full msg recvd")
         print(full_msg[HEADERSIZE:])
+        set_temp(float(full_msg[HEADERSIZE:]))
+        print(" CLIENT VALUE : " + temp)
         new_msg = True
         full_msg = ''
