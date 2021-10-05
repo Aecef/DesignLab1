@@ -12,6 +12,7 @@ class TitleBar(QWidget):
         print(self.parent.width())
         self.layout = QHBoxLayout()
         self.layout.setContentsMargins(0,0,0,0)
+        self.layout.setSpacing(0)
 
         self.title = QLabel("Temperature Control Panel")
         self.title.setAlignment(Qt.AlignCenter)
@@ -62,6 +63,7 @@ class TitleBar(QWidget):
             "   color: rgb(255, 255, 255);"
             "   background-color: rgb(30, 34, 36);"
             "   border-style: outset;"
+            "   padding-bottom: 3px"  
             "}"
             "QPushButton:hover{"
             "   font: 14pt \"Segoe UI Symbol\";"
@@ -70,6 +72,7 @@ class TitleBar(QWidget):
             "   border-style: solid;"
             "   border-width: 3px;"
             "   border-color: rgb(30, 34, 36);"
+            "   padding-bottom: 3px"
             "}"
             "QPushButton:pressed{"
             "   font: 14pt \"Segoe UI Symbol\";"
@@ -78,6 +81,7 @@ class TitleBar(QWidget):
             "   border-style: solid;"
             "   border-width: 3px;"
             "   border-color: rgb(30, 34, 36);"
+            "   padding-bottom: 3px"
             "}"
         )
 
