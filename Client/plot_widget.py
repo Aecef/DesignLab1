@@ -9,7 +9,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from PyQt5.QtWidgets import QFrame
 from PyQt5.QtWidgets import QVBoxLayout
-
+from clientsocket import get_temp,temp_update
 
 class PlotWidget(QFrame):
     def __init__(self, parent):
@@ -40,8 +40,11 @@ class PlotWidget(QFrame):
         self.setLayout(self.layout)
 
     def update_plot(self):
+        # Updates Temp
+        #temp_update()
+
         # Drop off the first y element, append a new one.
-        self.ydata = self.ydata[1:] + [1]
+        self.ydata = self.ydata[1:] + [get_temp()]
 
         # Note: we no longer need to clear the axis.
         if self._plot_ref is None:
