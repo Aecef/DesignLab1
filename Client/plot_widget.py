@@ -23,6 +23,7 @@ class PlotWidget(QFrame):
         self.layout = QVBoxLayout()
 
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
+
         n_data = 50
         self.xdata = list(range(n_data))
         self.ydata = [random.randint(0, 10) for i in range(n_data)]
@@ -40,7 +41,7 @@ class PlotWidget(QFrame):
 
     def update_plot(self):
         # Drop off the first y element, append a new one.
-        self.ydata = self.ydata[1:] + [random.randint(0, 10)]
+        self.ydata = self.ydata[1:] + [1]
 
         # Note: we no longer need to clear the axis.
         if self._plot_ref is None:
@@ -62,4 +63,6 @@ class MplCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = fig.add_subplot(111)
+        self.axes.set_xlabel("Time (sec)")
+        self.axes.set_ylabel("Temperature (°C)")
         super(MplCanvas, self).__init__(fig)
