@@ -41,10 +41,10 @@ class PlotWidget(QFrame):
 
     def update_plot(self):
         # Updates Temp
-        #lientsocket.temp_update()
-        #print(clientsocket.get_temp())
+        clientsocket.temp_update()
+        print(clientsocket.get_temp())
         # Drop off the first y element, append a new one.
-        self.ydata = self.ydata[1:] + [30]
+        self.ydata = self.ydata[1:] + [clientsocket.get_temp()]
 
         # Note: we no longer need to clear the axis.
         if self._plot_ref is None:

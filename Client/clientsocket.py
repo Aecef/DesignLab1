@@ -45,18 +45,24 @@ def temp_update():
     msg = get_sock().recv(16)
     global full_msg
     change_message = False
+    full_msg = msg.decode("utf-8")[get_headersize():]
+    if full_msg != '':
+        set_temp(float(full_msg))
 
-    if is_new_msg():
-        #print(f"new message length: {msg[:HEADERSIZE]}")
-        msglen = int(msg[:get_headersize()])
-        set_is_new_msg(False)    
-    while not change_message:
-        full_msg += msg.decode("utf-8")
-        if len(full_msg) - get_headersize() == msglen:
-            #print("full msg recvd")
-            #print(full_msg[get_headersize():])
-            set_temp(float(full_msg[get_headersize():]))
-            print(get_temp())
-            set_is_new_msg(True)
-            full_msg = ''
-            change_message = True
+
+#        if is_new_msg():
+#            #print(f"new message length: {msg[:HEADERSIZE]}")
+#        msglen = int(msg[:get_headersize()])
+#        set_is_new_msg(False)    
+#    while not change_message:
+#        full_msg += msg.decode("utf-8")
+#        if len(full_msg) - get_headersize() == msglen:
+#            #print("full msg recvd")
+#            #print(full_msg[get_headersize():])
+#            #set_temp(float(full_msg[get_headersize():]))
+#            set_is_new_msg(True)
+#            full_msg = ''
+#            change_message = True
+#    #print(get_temp())
+
+
