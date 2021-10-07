@@ -4,6 +4,8 @@ from PyQt5.QtWidgets import QLabel
 from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import Qt
+from PyQt5 import QtCore
+from clientsocket import get_temp
 
 class DeviceControlPanel(QFrame):
     def __init__(self, parent):
@@ -58,7 +60,8 @@ class DeviceControlPanel(QFrame):
             "color: rgb(246, 246, 246);"
         )
 
-        self.status = QLineEdit("97")
+        self.status = QLineEdit()
+        self.status.setText(str(get_temp()))
         self.status.setReadOnly(True)
         self.status.setAlignment(Qt.AlignCenter)
         self.status.setFixedSize(110, 40)
@@ -68,6 +71,10 @@ class DeviceControlPanel(QFrame):
             "border: 2px solid rgb(30, 34, 36);"
             "font: 87 18pt \"Segoe UI Black\";"
         )
+        self.timer = QtCore.QTimer()
+        self.timer.setInterval(500)
+        self.timer.timeout.connect(self.status_update())
+        self.timer.start()
 
         self.display_lbl = QLabel("Toggle Device Display")
         self.display_lbl.setAlignment(Qt.AlignCenter)
@@ -174,3 +181,7 @@ class DeviceControlPanel(QFrame):
         else:
             self.temperature_select_btn.setText('°C')
             self.status_lbl.setText('Temperature Status\n(°C)')
+
+    def status_update(self):
+        status = str(get_temp())
+        self.status.setText(status)

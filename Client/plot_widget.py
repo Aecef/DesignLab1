@@ -25,7 +25,7 @@ class PlotWidget(QFrame):
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
 
         n_data = 300
-        self.xdata = list(range(n_data))
+        self.xdata = list(reversed(range(n_data)))
         self.ydata = [clientsocket.get_temp() for i in range(n_data)]
 
         self._plot_ref = None
@@ -66,6 +66,8 @@ class MplCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = fig.add_subplot(111)
+        self.axes.set_ylim(10, 60)
+        self.axes.set_xlim(300, 0)
         self.axes.set_xlabel("Time (sec)")
         self.axes.set_ylabel("Temperature (°C)")
         super(MplCanvas, self).__init__(fig)
