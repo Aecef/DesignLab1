@@ -28,6 +28,7 @@ class PlotWidget(QFrame):
         n_data = 300
         self.xdata = list(reversed(range(n_data)))
         self.ydata = [clientsocket.get_temp() for i in range(n_data)]
+        self.ydata_f = [device_control_panel.CtoF(clientsocket.get_temp()) for i in range(n_data)]
 
         self._plot_ref = None
         self.update_plot()
@@ -44,21 +45,42 @@ class PlotWidget(QFrame):
         # Updates Temp
         clientsocket.temp_update()
         print(clientsocket.get_temp())
-        # Drop off the first y element, append a new one.
-        self.ydata = self.ydata[1:] + [clientsocket.get_temp()]
 
-        # Note: we no longer need to clear the axis.
-        if self._plot_ref is None:
-            # First time we have no plot reference, so do a normal plot.
-            # .plot returns a list of line <reference>s, as we're
-            # only getting one we can take the first element.
-            plot_refs = self.canvas.axes.plot(self.xdata, self.ydata, 'r')
-            self._plot_ref = plot_refs[0]
+        if (device_control_panel.get_celcius()):
+            self.canvas.axes.set_ylabel("Temperature (°C)")
+            self.canvas.axes.set_ylim(10, 60)
+
+            self.ydata = self.ydata[1:] + [clientsocket.get_temp()]
+            self.ydata_f = self.ydata_f[1:] + [device_control_panel.CtoF(clientsocket.get_temp())]
+
+            # Note: we no longer need to clear the axis.
+            if self._plot_ref is None:
+                # First time we have no plot reference, so do a normal plot.
+                # .plot returns a list of line <reference>s, as we're
+                # only getting one we can take the first element.
+                plot_refs = self.canvas.axes.plot(self.xdata, self.ydata, 'r')
+                self._plot_ref = plot_refs[0]
+            else:
+                # We have a reference, we can use it to update the data for that line.
+                self._plot_ref.set_ydata(self.ydata)
         else:
-            # We have a reference, we can use it to update the data for that line.
-            self._plot_ref.set_ydata(self.ydata)
+            self.canvas.axes.set_ylabel("Temperature (°F)")
+            self.canvas.axes.set_ylim(50, 140)
 
-        if
+            self.ydata = self.ydata[1:] + [clientsocket.get_temp()]
+            self.ydata_f = self.ydata_f[1:] + [device_control_panel.CtoF(clientsocket.get_temp())]
+
+            # Note: we no longer need to clear the axis.
+            if self._plot_ref is None:
+                # First time we have no plot reference, so do a normal plot.
+                # .plot returns a list of line <reference>s, as we're
+                # only getting one we can take the first element.
+                plot_refs = self.canvas.axes.plot(self.xdata, self.ydata_f, 'r')
+                self._plot_ref = plot_refs[0]
+            else:
+                # We have a reference, we can use it to update the data for that line.
+                self._plot_ref.set_ydata(self.ydata_f)
+
 
         # Trigger the canvas to update and redraw.
         self.canvas.draw()
