@@ -1,9 +1,11 @@
+from socket import socket
 from PyQt5.QtCore import QPoint
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QHBoxLayout
 from PyQt5.QtWidgets import QLabel
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtWidgets import QWidget
+import clientsocket
 
 class TitleBar(QWidget):
     def __init__(self, parent):
@@ -115,6 +117,7 @@ class TitleBar(QWidget):
 
 
     def btn_close_clicked(self):
+        clientsocket.get_sock().close()
         self.parent.close()
 
     def btn_min_clicked(self):

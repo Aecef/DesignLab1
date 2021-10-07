@@ -1,6 +1,6 @@
 import socket
 
-temp = 30.0
+temp = 0.0
 sock = None
 
 def set_temp(new_temp):
