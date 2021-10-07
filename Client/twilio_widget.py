@@ -44,7 +44,7 @@ class TwilioWidget(QFrame):
             "color: rgb(246, 246, 246);"
         )
 
-        self.temp_high = QLineEdit("30")
+        self.temp_high = QLineEdit("33")
         self.temp_high.setAlignment(Qt.AlignCenter)
         self.temp_high.setFixedSize(200, 30)
         self.temp_high.setStyleSheet(

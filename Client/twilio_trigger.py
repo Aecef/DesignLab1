@@ -1,5 +1,5 @@
 from twilio.rest import Client
-
+import clientsocket
 upper_limit = 33.0 #Upper Limit trigger for twilio in Celsius
 lower_limit = 13.0 #Lower Limit trigger for twilio in Celsius
 
@@ -66,7 +66,7 @@ def has_temp_exceeded_limits(temp):
         print("Twilio Sent:::::::")
         #add twilio call here
         set_temp_moved_limit(False)
-    elif temp <= get_lower_limit() and get_temp_moved_limit():
+    elif temp <= get_lower_limit() and get_temp_moved_limit() and not clientsocket.get_temp() == -1000:
         sendAlert("TEMPERATURE EXCEEDED THE LOWER LIMIT",get_target_phone())
         print("TWILIO SENT:::::")
         #add twilio call here

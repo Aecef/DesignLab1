@@ -22,4 +22,5 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     gui = ControlPanel()
     gui.show()
+    
     sys.exit(app.exec_())
