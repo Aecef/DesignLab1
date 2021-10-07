@@ -117,6 +117,7 @@ class TitleBar(QWidget):
 
 
     def btn_close_clicked(self):
+        clientsocket.get_sock().shutdown(2)
         clientsocket.get_sock().close()
         self.parent.close()
 
