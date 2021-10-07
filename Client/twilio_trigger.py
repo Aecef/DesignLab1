@@ -5,13 +5,21 @@ lower_limit = 13.0 #Lower Limit trigger for twilio in Celsius
 
 temp_moved_limit = False
 
-account_sid = 'ACa62404846b80019bfc75dc5c3503db23'
-auth_token = 'b2e808da58fc8417a884c56d565f7210'
-
 target_phone = "18156669066"
-twil_phone = '+19142923936'
 
-client = Client(account_sid, auth_token)
+twil_phone = '+19142923936'
+client = None
+
+def setClient(c):
+    global client
+    print(client)
+    client = c
+    print(client)
+
+
+def get_client():
+    global client
+    return client
 
 def sendAlert(alert_message, user_phone):
     message = client.messages.create(
@@ -52,17 +60,19 @@ def set_lower_limit(val):
     global lower_limit
     lower_limit = val
     
-def check_temp_above(temp):
-    if temp >= get_upper_limit() and not get_temp_moved_limit():
-        sendAlert("TEMPERRATURE EXCEEDED THE UPPER LIMIT",get_target_phone())
+def has_temp_exceeded_limits(temp):
+    if temp >= get_upper_limit() and get_temp_moved_limit():
+        sendAlert("TEMPERATURE EXCEEDED THE UPPER LIMIT",get_target_phone())
+        print("Twilio Sent:::::::")
         #add twilio call here
-        set_temp_moved_limit(True)
-    elif temp <= get_lower_limit() and not get_temp_moved_limit():
-        sendAlert("TEMPERRATURE EXCEEDED THE LOWER LIMIT",get_target_phone())
-        #add twilio call here
-        set_temp_moved_limit(True)
-    else:
         set_temp_moved_limit(False)
+    elif temp <= get_lower_limit() and get_temp_moved_limit():
+        sendAlert("TEMPERATURE EXCEEDED THE LOWER LIMIT",get_target_phone())
+        print("TWILIO SENT:::::")
+        #add twilio call here
+        set_temp_moved_limit(False)
+    elif temp <= get_upper_limit() and temp >= get_lower_limit():
+        set_temp_moved_limit(True)
 
 
 

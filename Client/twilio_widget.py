@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QLabel
 from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import Qt
+import twilio_trigger
 
 class TwilioWidget(QFrame):
     def __init__(self, parent):
@@ -24,7 +25,7 @@ class TwilioWidget(QFrame):
             "color: rgb(246, 246, 246);"
         )
 
-        self.phone_number = QLineEdit("1-800-888-8888")
+        self.phone_number = QLineEdit("18156669066")
         self.phone_number.setAlignment(Qt.AlignCenter)
         self.phone_number.setFixedSize(200, 30)
         self.phone_number.setStyleSheet(
@@ -43,7 +44,7 @@ class TwilioWidget(QFrame):
             "color: rgb(246, 246, 246);"
         )
 
-        self.temp_high = QLineEdit("100")
+        self.temp_high = QLineEdit("30")
         self.temp_high.setAlignment(Qt.AlignCenter)
         self.temp_high.setFixedSize(200, 30)
         self.temp_high.setStyleSheet(
@@ -62,7 +63,7 @@ class TwilioWidget(QFrame):
             "color: rgb(246, 246, 246);"
         )
 
-        self.temp_low = QLineEdit("32")
+        self.temp_low = QLineEdit("14")
         self.temp_low.setAlignment(Qt.AlignCenter)
         self.temp_low.setFixedSize(200, 30)
         self.temp_low.setStyleSheet(
@@ -110,4 +111,7 @@ class TwilioWidget(QFrame):
         self.setLayout(self.layout)
 
     def apply_btn_press(self):
+        twilio_trigger.set_target_phone(self.phone_number.text())
+        twilio_trigger.set_lower_limit(float(self.temp_low.text()))
+        twilio_trigger.set_upper_limit(float(self.temp_high.text()))
         print("Apply")
