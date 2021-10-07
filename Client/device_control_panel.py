@@ -7,6 +7,8 @@ from PyQt5.QtCore import Qt
 from PyQt5 import QtCore
 import clientsocket
 
+celcius = True
+
 class DeviceControlPanel(QFrame):
     def __init__(self, parent):
         super(DeviceControlPanel, self).__init__()
@@ -72,7 +74,7 @@ class DeviceControlPanel(QFrame):
             "font: 87 18pt \"Segoe UI Black\";"
         )
         self.timer = QtCore.QTimer()
-        self.timer.setInterval(200)
+        self.timer.setInterval(1000)
         self.timer.timeout.connect(self.status_update)
         self.timer.start()
 
@@ -140,9 +142,31 @@ class DeviceControlPanel(QFrame):
         if self.temperature_select_btn.text() == '°C':
             self.temperature_select_btn.setText('°F')
             self.status_lbl.setText('Temperature Status\n(°F)')
+            set_celcius(False)
         else:
             self.temperature_select_btn.setText('°C')
             self.status_lbl.setText('Temperature Status\n(°C)')
+            set_celcius(True)
 
     def status_update(self):
-        self.status.setText(str("{:.1f}".format(clientsocket.get_temp())))
+
+        celsius = clientsocket.get_temp()
+        fahrenheit = CtoF(celsius)
+        if (clientsocket.get_temp() == -1000):
+            self.status.setText("ERROR")
+        else:
+            if(get_celcius()):
+                self.status.setText(str("{:.1f}".format(celsius)))
+            else:
+                self.status.setText(str("{:.1f}".format(fahrenheit)))
+
+
+def set_celcius(bool):
+    global celcius
+    celcius = bool
+
+def get_celcius():
+    return celcius
+def CtoF(celsius):
+    fahrenheit = (celsius * 9 / 5) + 32
+    return fahrenheit

@@ -10,6 +10,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from PyQt5.QtWidgets import QFrame
 from PyQt5.QtWidgets import QVBoxLayout
+import device_control_panel
 
 class PlotWidget(QFrame):
     def __init__(self, parent):
@@ -32,7 +33,7 @@ class PlotWidget(QFrame):
         self.update_plot()
 
         self.timer = QtCore.QTimer()
-        self.timer.setInterval(200)
+        self.timer.setInterval(1000)
         self.timer.timeout.connect(self.update_plot)
         self.timer.start()
 
@@ -56,6 +57,8 @@ class PlotWidget(QFrame):
         else:
             # We have a reference, we can use it to update the data for that line.
             self._plot_ref.set_ydata(self.ydata)
+
+        if
 
         # Trigger the canvas to update and redraw.
         self.canvas.draw()
