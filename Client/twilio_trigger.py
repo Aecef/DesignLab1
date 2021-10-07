@@ -8,6 +8,7 @@ temp_moved_limit = False
 account_sid = 'ACa62404846b80019bfc75dc5c3503db23'
 auth_token = 'b2e808da58fc8417a884c56d565f7210'
 
+target_phone = "18156669066"
 twil_phone = '+19142923936'
 
 client = Client(account_sid, auth_token)
@@ -35,6 +36,14 @@ def get_lower_limit():
     global lower_limit
     return lower_limit
 
+def get_target_phone():
+    global target_phone
+    return target_phone
+
+def set_target_phone(new_phone):
+    global target_phone
+    target_phone = new_phone
+
 def set_upper_limit(val):
     global upper_limit
     upper_limit = val
@@ -45,9 +54,11 @@ def set_lower_limit(val):
     
 def check_temp_above(temp):
     if temp >= get_upper_limit() and not get_temp_moved_limit():
+        sendAlert("TEMPERRATURE EXCEEDED THE UPPER LIMIT",get_target_phone())
         #add twilio call here
         set_temp_moved_limit(True)
     elif temp <= get_lower_limit() and not get_temp_moved_limit():
+        sendAlert("TEMPERRATURE EXCEEDED THE LOWER LIMIT",get_target_phone())
         #add twilio call here
         set_temp_moved_limit(True)
     else:
