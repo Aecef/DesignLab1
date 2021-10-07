@@ -24,9 +24,9 @@ class PlotWidget(QFrame):
 
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
 
-        n_data = 50
+        n_data = 300
         self.xdata = list(range(n_data))
-        self.ydata = [random.randint(0, 10) for i in range(n_data)]
+        self.ydata = [clientsocket.get_temp() for i in range(n_data)]
 
         self._plot_ref = None
         self.update_plot()
