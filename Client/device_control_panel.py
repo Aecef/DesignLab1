@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import Qt
 from PyQt5 import QtCore
-from clientsocket import get_temp
+import clientsocket
 
 class DeviceControlPanel(QFrame):
     def __init__(self, parent):
@@ -61,7 +61,7 @@ class DeviceControlPanel(QFrame):
         )
 
         self.status = QLineEdit()
-        self.status.setText(str(get_temp()))
+        self.status.setText(str("{:.1f}".format(clientsocket.get_temp())))
         self.status.setReadOnly(True)
         self.status.setAlignment(Qt.AlignCenter)
         self.status.setFixedSize(110, 40)
@@ -72,44 +72,9 @@ class DeviceControlPanel(QFrame):
             "font: 87 18pt \"Segoe UI Black\";"
         )
         self.timer = QtCore.QTimer()
-        self.timer.setInterval(500)
-        self.timer.timeout.connect(self.status_update())
+        self.timer.setInterval(200)
+        self.timer.timeout.connect(self.status_update)
         self.timer.start()
-
-        self.display_lbl = QLabel("Toggle Device Display")
-        self.display_lbl.setAlignment(Qt.AlignCenter)
-        self.display_lbl.setFixedSize(200, 30)
-        self.display_lbl.setStyleSheet(
-            "font: 87 13pt \"Segoe UI Black\";"
-            "color: rgb(246, 246, 246);"
-        )
-
-        self.display_toggle_btn = QPushButton()
-        self.display_toggle_btn.setFixedSize(50, 50)
-        self.display_toggle_btn.clicked.connect(self.display_btn_press)
-        self.display_toggle_btn.setStyleSheet(
-            "QPushButton{"
-            "   font: 14pt \"Segoe UI Symbol\";"
-            "   color: rgb(255, 255, 255);"
-            "   background-color: red;"
-            "   border-radius: 25px;"
-            "   border: 3px solid rgb(30, 34, 36);"
-            "}"
-            "QPushButton:hover{"
-            "   font: bold 14pt \"Segoe UI Symbol\";"
-            "   color: rgb(30,34,36);"
-            "   background-color: rgb(255, 104, 106);"
-            "   border-radius: 25px;"
-            "   border: 3px solid rgb(30, 34, 36);"
-            "}"
-            "QPushButton:pressed{"
-            "   font: bold 14pt \"Segoe UI Symbol\";"
-            "   color: rgb(30,34,36);"
-            "   background-color: rgb(255, 61, 63);"
-            "   border-radius: 25px;"
-            "   border: 3px solid rgb(30, 34, 36);"
-            "}"
-        )
 
         self.layout.addWidget(self.temperature_select_lbl, alignment=Qt.AlignCenter)
         self.layout.addWidget(self.temperature_select_btn, alignment=Qt.AlignCenter)
@@ -117,9 +82,6 @@ class DeviceControlPanel(QFrame):
         self.layout.addWidget(self.status_lbl, alignment=Qt.AlignCenter)
         self.layout.addWidget(self.status, alignment=Qt.AlignCenter)
         self.layout.addStretch(0)
-        self.layout.addWidget(self.display_lbl, alignment=Qt.AlignCenter)
-        self.layout.addWidget(self.display_toggle_btn, alignment=Qt.AlignCenter)
-        self.layout.addStretch(-1)
         self.setLayout(self.layout)
 
     def display_btn_press(self):
@@ -183,5 +145,4 @@ class DeviceControlPanel(QFrame):
             self.status_lbl.setText('Temperature Status\n(°C)')
 
     def status_update(self):
-        status = str(get_temp())
-        self.status.setText(status)
+        self.status.setText(str("{:.1f}".format(clientsocket.get_temp())))
