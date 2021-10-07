@@ -1,7 +1,7 @@
 import sys
 import socket
 from PyQt5 import QtWidgets
-from Client.control_panel import ControlPanel
+from control_panel import ControlPanel
 from clientsocket import set_sock
 
 if __name__ == "__main__":

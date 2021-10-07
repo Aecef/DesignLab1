@@ -1,6 +1,6 @@
 import socket
 
-temp = 0
+temp = 30.0
 sock = None
 
 def set_temp(new_temp):
@@ -8,6 +8,7 @@ def set_temp(new_temp):
     temp = new_temp
 
 def get_temp():
+    global temp
     return temp
 
 def set_sock(socket):
@@ -15,6 +16,7 @@ def set_sock(socket):
     sock = socket
 
 def get_sock():
+    global sock
     return sock
 
 #s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -26,22 +28,35 @@ HEADERSIZE = 10
 full_msg = ''
 new_msg = True
 
+def get_headersize():
+    global HEADERSIZE
+    return HEADERSIZE
+
+def is_new_msg():
+    global new_msg
+    return new_msg
+
+def set_is_new_msg(val):
+    global new_msg
+    new_msg = val
+
+
 def temp_update():
     msg = get_sock().recv(16)
-    global HEADERSIZE
-    global new_msg
     global full_msg
+    change_message = False
 
-    if new_msg:
+    if is_new_msg():
         #print(f"new message length: {msg[:HEADERSIZE]}")
-        msglen = int(msg[:HEADERSIZE])
-        new_msg = False    
-    full_msg += msg.decode("utf-8")
-    if len(full_msg) - HEADERSIZE == msglen:
-        #print("full msg recvd")
-        print(full_msg[HEADERSIZE:])
-        set_temp(float(full_msg[HEADERSIZE:]))
-        test = get_temp()
-        print(test)
-        new_msg = True
-        full_msg = ''
+        msglen = int(msg[:get_headersize()])
+        set_is_new_msg(False)    
+    while not change_message:
+        full_msg += msg.decode("utf-8")
+        if len(full_msg) - get_headersize() == msglen:
+            #print("full msg recvd")
+            #print(full_msg[get_headersize():])
+            set_temp(float(full_msg[get_headersize():]))
+            print(get_temp())
+            set_is_new_msg(True)
+            full_msg = ''
+            change_message = True

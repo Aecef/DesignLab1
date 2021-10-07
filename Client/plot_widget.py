@@ -2,6 +2,7 @@ import sys
 import matplotlib
 matplotlib.use('Qt5Agg')
 import random
+import clientsocket
 
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
@@ -9,7 +10,6 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from PyQt5.QtWidgets import QFrame
 from PyQt5.QtWidgets import QVBoxLayout
-from clientsocket import get_temp,temp_update
 
 class PlotWidget(QFrame):
     def __init__(self, parent):
@@ -41,10 +41,10 @@ class PlotWidget(QFrame):
 
     def update_plot(self):
         # Updates Temp
-        #temp_update()
-
+        #lientsocket.temp_update()
+        #print(clientsocket.get_temp())
         # Drop off the first y element, append a new one.
-        self.ydata = self.ydata[1:] + [get_temp()]
+        self.ydata = self.ydata[1:] + [30]
 
         # Note: we no longer need to clear the axis.
         if self._plot_ref is None:
