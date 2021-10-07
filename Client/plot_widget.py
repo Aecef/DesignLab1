@@ -3,6 +3,7 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 import random
 import clientsocket
+import twilio_trigger
 
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
@@ -45,6 +46,8 @@ class PlotWidget(QFrame):
         # Updates Temp
         clientsocket.temp_update()
         print(clientsocket.get_temp())
+        twilio_trigger.has_temp_exceeded_limits(clientsocket.get_temp())
+
 
         if (device_control_panel.get_celcius()):
             self.canvas.axes.set_ylabel("Temperature (°C)")
